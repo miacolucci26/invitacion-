@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mis XV Años - Alexandra Sofía</title>
+<meta name="description" content="👑🎉 ¡Estás invitado a mis quince años! Disfrutemos juntos esta noche especial 💗">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rosa:#e07aa0;          /* acento principal (antes lila #c164d8) */
+    --rosa-osc:#b64572;      /* titulos fuertes   (antes #a43fbc) */
+    --rosa-sua:#f6c4d6;
+    --rosa-pal:#ffe6ee;
+    --rosa-bg:#fff3f7;
+    --texto:#5b2a3d;
+    --oro:#d9a441;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Montserrat',sans-serif;font-weight:400;color:var(--texto);
+    background:#f3c7d6;
+    background:linear-gradient(135deg,#f6c4d6,#fde3ec 50%,#f6c4d6);
+    text-align:center;overflow-x:hidden;
+  }
+  body.bloqueado{overflow:hidden;height:100vh}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  /* ====== columna tipo celular ====== */
+  #app{max-width:480px;margin:0 auto;background:var(--rosa-bg);position:relative;overflow:hidden;box-shadow:0 0 60px rgba(180,70,114,.25)}
+  section{position:relative;overflow:hidden;padding:64px 26px}
+
+  .script{font-family:'Great Vibes',cursive;font-weight:400;color:var(--rosa)}
+  .titulo{font-family:'Great Vibes',cursive;font-weight:400;color:var(--rosa);font-size:clamp(2.6rem,12vw,3.4rem);line-height:1.1}
+  .sub{letter-spacing:.18em;text-transform:uppercase;font-weight:600;font-size:clamp(.9rem,4.2vw,1.1rem);color:var(--texto)}
+  .serif{font-family:'Playfair Display',serif}
+  .texto{font-family:'Montserrat',sans-serif;font-size:.98rem;line-height:1.75;max-width:340px;margin:0 auto}
+  .oro{width:min(300px,78%);margin:14px auto}
+
+  /* decoraciones flotantes */
+  .deco{position:absolute;pointer-events:none;z-index:1}
+  .lirio-izq{left:-62px;top:-46px;width:158px;transform:rotate(-12deg)}
+  .lirio-der{right:-62px;top:-40px;width:158px;transform:scaleX(-1) rotate(-12deg)}
+  .lirio-abajo-izq{left:-60px;bottom:-56px;width:150px;transform:rotate(150deg)}
+  .lirio-abajo-der{right:-60px;bottom:-56px;width:150px;transform:scaleX(-1) rotate(150deg)}
+  .mariposa{width:60px;animation:aletea 4s ease-in-out infinite}
+  @keyframes aletea{50%{transform:translateY(-10px) rotate(8deg)}}
+  .contenido{position:relative;z-index:2}
+
+  /* ====== SOBRE (portada) ====== */
+  #sobre{
+    position:fixed;inset:0;z-index:100;display:flex;justify-content:center;
+    background:#2a0f1c;transition:transform 1.1s cubic-bezier(.7,0,.2,1),opacity .9s;
+  }
+  #sobre.abierto{transform:translateY(-100%);opacity:0;pointer-events:none}
+  .sobre-col{position:relative;width:100%;max-width:480px;height:100%;overflow:hidden;
+    background:#3a1226 url('img/aurora-cover.jpg') center/cover no-repeat}
+  .sobre-col::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,10,25,.45),rgba(40,10,25,.15) 45%,rgba(40,10,25,.55))}
+  .sobre-txt{position:absolute;top:13%;left:0;right:0;color:#fff;z-index:2;padding:0 20px;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+  .sobre-txt .xv{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,8vw,2.2rem);letter-spacing:.02em}
+  .sobre-txt .nom{font-family:'Great Vibes',cursive;font-size:clamp(3.6rem,19vw,5.2rem);line-height:.95;color:#fff;
+    text-shadow:2px 2px 0 #d9739d,0 2px 14px rgba(0,0,0,.4)}
+  .sobre-txt .oro{margin:14px auto 22px}
+  .sobre-txt .inv{font-family:'Playfair Display',serif;letter-spacing:.06em;font-size:clamp(.95rem,4.6vw,1.2rem);text-transform:uppercase}
+  .sobre-txt .quince{font-family:'Great Vibes',cursive;font-size:clamp(2.2rem,11vw,3rem)}
+  .envoltorio{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);width:min(82%,380px);z-index:3;cursor:pointer;animation:late 2.2s ease-in-out infinite}
+  @keyframes late{50%{transform:translateX(-50%) scale(1.035)}}
+  .envoltorio .sello{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:27%}
+  .envoltorio .mano{position:absolute;left:55%;top:60%;width:15%;animation:toca 1.2s ease-in-out infinite}
+  @keyframes toca{50%{transform:translate(-6px,-6px)}}
+  #sobre.abierto .sello{animation:salta .6s forwards}
+  @keyframes salta{to{transform:translate(-50%,-90%) scale(1.6);opacity:0}}
+
+  /* ====== HERO ====== */
+  #hero{min-height:100svh;padding:0;display:flex;flex-direction:column;justify-content:flex-end;
+    background:var(--rosa-pal) url('img/aurora-hero.jpg') top center/100% auto no-repeat}
+  #hero::before{content:"";position:absolute;left:0;right:0;top:0;height:86%;
+    background:linear-gradient(180deg,rgba(255,243,247,0) 0,rgba(255,243,247,0) 40%,rgba(255,226,236,.7) 62%,var(--rosa-pal) 82%)}
+  #hero .corona{width:120px;margin:0 auto 6px}
+  #hero .pie{position:relative;z-index:2;padding:0 20px 34px;background:linear-gradient(180deg,rgba(255,230,238,0),var(--rosa-pal) 30%)}
+  #hero h2.mis{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(1.7rem,8.4vw,2.2rem);color:var(--rosa)}
+  #hero h1{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(3.6rem,19vw,5.2rem);line-height:.92;color:var(--rosa);
+    text-shadow:2px 2px 0 rgba(255,255,255,.8),3px 3px 0 #f2a8c2}
+  #hero .musica-txt{font-family:'Great Vibes',cursive;font-size:1.1rem;color:var(--rosa);margin-top:16px}
+  .play{width:46px;height:46px;border-radius:50%;border:0;background:var(--rosa);color:#fff;font-size:1.05rem;cursor:pointer;margin-top:8px;
+    box-shadow:0 6px 16px rgba(224,122,160,.5)}
+
+  /* ====== PADRES / CITA ====== */
+  #cita{background:var(--rosa-bg) url('img/watercolor.jpg') center/cover}
+  #cita .cita{font-family:'Playfair Display',serif;font-style:italic;font-size:1.02rem;line-height:1.85;margin:6px auto 26px;max-width:340px}
+  .acomp{font-weight:600;letter-spacing:.14em;font-size:.85rem;text-transform:uppercase;margin:22px 0 4px}
+  .nombres{font-family:'Montserrat',sans-serif;font-size:1.02rem;line-height:1.9;margin-top:6px}
+  .nombres b{font-weight:600}
+  
+
+  /* ====== CUENTA REGRESIVA + CALENDARIO ====== */
+  #cuenta{padding:0;background:#3a1226 url('img/aurora-castle.jpg') center/cover;color:#fff}
+  #cuenta::before{content:"";position:absolute;inset:0;background:rgba(70,16,42,.5)}
+  #cuenta .fondo{position:relative;z-index:2;padding:64px 22px 54px}
+  #cuenta .faltan{font-family:'Great Vibes',cursive;font-size:clamp(3rem,15vw,4rem);color:#ffd2e1}
+  .reloj{display:flex;gap:10px;justify-content:center;margin:12px 0 18px}
+  .reloj div{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);border-radius:16px;min-width:68px;padding:12px 4px;backdrop-filter:blur(3px)}
+  .reloj b{display:block;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:500}
+  .reloj span{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase}
+  #cuenta .misxv{letter-spacing:.3em;font-weight:600;font-size:.95rem}
+  .calendario{background:rgba(255,255,255,.93);border-radius:22px;color:var(--texto);padding:22px 14px 18px;margin:26px auto 0;max-width:340px;
+    box-shadow:0 12px 30px rgba(0,0,0,.28)}
+  .calendario h3{font-family:'Playfair Display',serif;font-weight:600;color:var(--rosa-osc);font-size:1.15rem;margin-bottom:12px}
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px 0;font-size:.95rem}
+  .cal .d{color:var(--rosa);font-weight:600;font-size:.78rem;padding-bottom:6px}
+  .cal span{height:36px;display:flex;align-items:center;justify-content:center;position:relative}
+  .cal .dia{position:relative}
+  .cal .dia b{font-weight:600;color:#fff;z-index:2;position:relative}
+  .cal .dia::before{content:"";position:absolute;left:50%;top:50%;width:38px;height:38px;transform:translate(-50%,-50%);
+    border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffb3cd,#e0568a);border:3px solid #fff;box-shadow:0 0 0 2px var(--rosa),0 4px 10px rgba(224,86,138,.5);z-index:1}
+  .fecha-larga{font-family:'Playfair Display',serif;color:var(--rosa-osc);font-size:1.15rem;margin-top:14px;font-weight:500}
+
+  /* ====== botones ====== */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:190px;height:50px;margin-top:20px;padding:0 26px;border-radius:999px;
+    background:linear-gradient(180deg,#ec8fb0,#d9648f);color:#fff;font-weight:600;letter-spacing:.14em;font-size:.82rem;text-transform:uppercase;
+    box-shadow:0 8px 18px rgba(217,100,143,.4),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .2s;border:0;cursor:pointer;
+  }
+  .btn:active{transform:scale(.96)}
+
+  /* ====== MISA / RECEPCIÓN ====== */
+  #lugares{background:linear-gradient(180deg,var(--rosa-bg),var(--rosa-pal))}
+  .lugar{margin-bottom:46px;position:relative;z-index:2}
+  .lugar h2{font-family:'Great Vibes',cursive;font-weight:400;color:var(--rosa);font-size:clamp(2.4rem,11vw,3.1rem);line-height:1.1}
+  .lugar .hora{font-family:'Great Vibes',cursive;color:var(--rosa);font-size:2.4rem}
+  .lugar .donde{font-weight:600;letter-spacing:.06em;line-height:1.6;font-size:1.02rem}
+  .lugar img.ic{width:74px;margin:0 auto 10px}
+  .lugar .dir{font-size:.92rem;font-weight:400}
+
+  /* ====== CANCIONES + DRESS CODE ====== */
+  #canciones{background:var(--rosa-bg)}
+  #canciones .bloque{margin-bottom:54px;position:relative;z-index:2}
+  .iconos-vestido{width:130px;margin:6px auto 4px}
+  .colores{display:flex;gap:12px;justify-content:center;margin:14px 0 6px}
+  .colores i{width:44px;height:44px;border-radius:50%;border:3px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.15);position:relative}
+  .colores i::after{content:"";position:absolute;left:-4px;right:-4px;top:50%;height:2px;background:#c0395f;transform:rotate(-40deg)}
+
+  /* ====== PINTURA ====== */
+  #pintura{padding:30px 0 0;background:linear-gradient(180deg,var(--rosa-bg),var(--rosa-pal));min-height:300px}
+  #pintura{padding:46px 0 10px}
+  #pintura .paint{width:min(66%,300px);margin:0 auto;aspect-ratio:3/4;object-fit:cover;object-position:center 20%;border-radius:999px 999px 28px 28px;border:6px solid #fff;box-shadow:0 14px 34px rgba(182,69,114,.35)}
+
+  /* ====== ASISTENCIA ====== */
+  #asistencia{background:var(--rosa-pal)}
+  #asistencia .pareja{width:92%;max-width:400px;margin:24px auto 0}
+
+  /* ====== ITINERARIO ====== */
+  #itinerario{background:var(--rosa-bg) url('img/watercolor.jpg') center/cover}
+  .linea{position:relative;max-width:360px;margin:30px auto 0;padding:6px 0}
+  .linea::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;transform:translateX(-50%);
+    background:repeating-linear-gradient(180deg,var(--rosa) 0 10px,transparent 10px 16px);border-radius:3px}
+  .it{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:132px;margin-bottom:6px}
+  .it .ico,.it .info{padding:0 22px}
+  .it .ico img{max-width:104px;max-height:104px;margin:0 auto}
+  .it .info h4{font-family:'Great Vibes',cursive;font-weight:400;font-size:2rem;line-height:1.05;color:var(--rosa)}
+  .it .info p{font-weight:600;font-size:1.05rem;color:var(--texto)}
+  .it::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;border-radius:50%;background:var(--rosa);border:3px solid #fff;transform:translate(-50%,-50%);box-shadow:0 0 0 2px var(--rosa)}
+  .it.inv .ico{order:2}.it.inv .info{order:1;text-align:right}
+  .it:not(.inv) .info{text-align:left}
+
+  /* ====== BUZÓN / FOTOS ====== */
+  #buzon{background:#3a1226 url('img/aurora-cover.jpg') center/cover;padding:0}
+  #buzon::before{content:"";position:absolute;inset:0;background:rgba(255,236,243,.35)}
+  #buzon .caja{position:relative;z-index:2;padding:48px 22px;display:grid;gap:22px}
+  .tarjeta{background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border-radius:26px;padding:30px 22px 34px;box-shadow:0 12px 28px rgba(120,30,70,.25)}
+  .tarjeta img.ic{width:88px;margin:0 auto 8px}
+  .tarjeta h2{font-family:'Great Vibes',cursive;color:var(--rosa);font-weight:400;font-size:clamp(2.2rem,10vw,2.8rem);line-height:1.1}
+
+  /* ====== OBSEQUIO ====== */
+  #obsequio{background:var(--rosa-pal)}
+  #obsequio .ic{width:92px;margin:0 auto 10px}
+  .yape{margin:26px auto 0;max-width:250px;background:#fff;border-radius:22px;padding:14px;box-shadow:0 12px 28px rgba(182,69,114,.25)}
+  .yape img{width:100%;border-radius:12px}
+  .yape-n{font-weight:600;font-size:.92rem;line-height:1.5;margin-top:12px;color:var(--texto)}
+
+  /* ====== FIESTA REAL ====== */
+  #real{padding:0;background:var(--rosa-pal)}
+  #real .arriba{position:relative;height:340px;background:url('img/aurora-pink.jpg') center 18%/cover}
+  #real .arriba::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,230,238,0) 40%,var(--rosa-pal))}
+  #real .cuerpo{padding:0 26px 52px;margin-top:-30px;position:relative;z-index:2}
+  #real p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.08rem;line-height:1.85;color:var(--rosa-osc);max-width:340px;margin:0 auto 14px}
+  
+
+  /* ====== FOTOS ====== */
+  #fotos{background:var(--rosa-bg) url('img/watercolor.jpg') center/cover}
+  .galeria{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin:28px auto 0;max-width:380px}
+  .marco{position:relative;width:100%;aspect-ratio:419/595}
+  .marco .foto{position:absolute;left:12%;right:12%;top:8.5%;bottom:8.5%;background:linear-gradient(160deg,#ffd9e5,#f5b4cb);overflow:hidden;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:2.4rem}
+  .marco .foto img{width:100%;height:100%;object-fit:cover}
+  .marco .cuadro{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+
+  /* ====== FINAL ====== */
+  #final{padding:0;color:#fff;min-height:70svh;display:flex;align-items:flex-end;background:#3a1226 url('img/aurora-hero.jpg') center/cover}
+  #final::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(60,14,34,.1),rgba(60,14,34,.65))}
+  #final .t{position:relative;z-index:2;width:100%;padding:60px 26px 54px;text-shadow:0 2px 12px rgba(0,0,0,.45)}
+  #final .nofaltes{letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:6px}
+  #final .esperamos{font-family:'Great Vibes',cursive;font-size:clamp(3.2rem,16vw,4.4rem);color:#ffd2e1;line-height:1}
+  #final .firma{margin-top:22px;letter-spacing:.2em;font-size:.8rem}
+
+  /* ====== efectos ====== */
+  .rev{opacity:0;transform:translateY(30px);transition:opacity 1s,transform 1s}
+  .rev.on{opacity:1;transform:none}
+  .rev.izq{transform:translateX(-40px)} .rev.der{transform:translateX(40px)}
+  .rev.on.izq,.rev.on.der{transform:none}
+  .petalo{position:fixed;top:-30px;pointer-events:none;z-index:50;opacity:.75;animation:cae linear forwards}
+  @keyframes cae{to{transform:translateY(112vh) translateX(40px) rotate(540deg)}}
+  #fab{position:fixed;right:14px;bottom:14px;z-index:60;width:48px;height:48px;border-radius:50%;border:0;background:var(--rosa);color:#fff;font-size:1.15rem;
+    cursor:pointer;box-shadow:0 6px 16px rgba(224,122,160,.55);display:none}
+  body.listo #fab{display:block}
+</style>
+</head>
+<body class="bloqueado">
+
+<!-- ===================== SOBRE / PORTADA ===================== -->
+<div id="sobre">
+  <div class="sobre-col">
+    <div class="sobre-txt">
+      <div class="xv">Mis XV Años</div>
+      <div class="nom">Alexandra<br>Sofía</div>
+      <img class="oro" src="img/divider.png" alt="">
+      <div class="inv">Te invito a celebrar</div>
+      <div class="quince">Mis 15 Años</div>
+    </div>
+    <div class="envoltorio" id="abrir" role="button" aria-label="Abrir invitación" tabindex="0">
+      <img src="img/envelope.png" alt="">
+      <img class="sello" src="img/seal.png" alt="">
+      <img class="mano" src="img/hand.png" alt="">
+    </div>
+  </div>
+</div>
+
+<div id="app">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero">
+    <img class="deco lirio-izq" src="img/lily.png" alt="">
+    <img class="deco lirio-der" src="img/lily.png" alt="">
+    <img class="deco mariposa" style="left:34px;top:62%" src="img/butterfly.png" alt="">
+    <div class="pie">
+      <img class="corona rev" src="img/crown.png" alt="">
+      <h2 class="mis rev">Mis XV Años</h2>
+      <h1 class="rev">Alexandra<br>Sofía</h1>
+      <p class="musica-txt rev">Presiona el ♥ para escuchar mi canción</p>
+      <button class="play" id="play" aria-label="Reproducir canción">♥</button>
+    </div>
+  </section>
+
+  <!-- ===================== CITA + PADRES ===================== -->
+  <section id="cita">
+    <img class="deco lirio-izq" src="img/lily.png" alt="">
+    <img class="deco lirio-der" src="img/lily.png" alt="">
+    <div class="contenido">
+      <p class="cita rev">Hoy queda en el recuerdo mi niñez, pero hoy renazco para vivir el momento más feliz de mi vida: mi adolescencia. Quisiera que estés junto a mí para que compartamos mis 15 años.</p>
+      <img class="oro rev" src="img/divider.png" alt="">
+      <p class="acomp rev">Acompañada siempre por el amor de:</p>
+
+      <h2 class="titulo rev" style="margin-top:20px">Mis Padres</h2>
+      <p class="nombres rev"><b>Duberli Coello Sembrera</b><br><b>Julissa Fiestas Mena</b></p>
+      <img class="oro rev" src="img/divider.png" alt="">
+      <h2 class="titulo rev">Mis Padrinos</h2>
+      <p class="nombres rev"><b>Pedro Miguel Fiestas Mena</b><br><b>Clara María Fiestas Mena</b></p>
+      <img class="oro rev" src="img/divider.png" alt="">
+
+      <p class="cita rev" style="margin-top:18px">Gracias a Dios tengo unos padres a los que amo por darme la vida y, con el orgullo de ser su hija, hoy dejo de ser niñita consentida y paso a ser su princesa querida.</p>
+      <img class="pascal rev" src="img/butterflies.png" alt="" style="width:90px;margin:18px auto 0">
+    </div>
+  </section>
+
+  <!-- ===================== CUENTA REGRESIVA + CALENDARIO ===================== -->
+  <section id="cuenta">
+    <div class="fondo">
+      <h2 class="faltan rev">Faltan...</h2>
+      <div class="reloj rev">
+        <div><b id="d">0</b><span>Días</span></div>
+        <div><b id="h">0</b><span>Horas</span></div>
+        <div><b id="m">0</b><span>Min</span></div>
+        <div><b id="s">0</b><span>Seg</span></div>
+      </div>
+      <p class="misxv rev">MIS XV AÑOS</p>
+
+      <div class="calendario rev">
+        <h3>Noviembre 2026</h3>
+        <div class="cal">
+          <span class="d">Lun</span><span class="d">Mar</span><span class="d">Mié</span><span class="d">Jue</span><span class="d">Vie</span><span class="d">Sáb</span><span class="d">Dom</span>
+          <span></span><span></span><span></span><span></span><span></span><span></span><span>1</span>
+          <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span class="dia"><b>7</b></span><span>8</span>
+          <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+          <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+          <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+          <span>30</span>
+        </div>
+        <p class="fecha-larga">Sábado 7 de Noviembre del 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MISA / RECEPCIÓN ===================== -->
+  <section id="lugares">
+    <img class="deco lirio-der" src="img/lily.png" alt="">
+    <img class="deco lirio-abajo-izq" src="img/lily.png" alt="">
+    <div class="contenido">
+      <div class="lugar rev">
+        <img class="ic" src="img/ic-castle.png" alt="">
+        <h2>Misa de Ceremonia</h2>
+        <p class="hora">07:00 pm</p>
+        <p class="donde">Iglesia Santísimo Sacramento</p>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Iglesia+Sant%C3%ADsimo+Sacramento" target="_blank" rel="noopener">Ver ubicación</a>
+      </div>
+      <img class="oro rev" src="img/divider.png" alt="" style="margin-bottom:40px">
+      <div class="lugar rev">
+        <img class="ic" src="img/ic-princess.png" alt="">
+        <h2>Recepción</h2>
+        <p class="hora">08:00 pm</p>
+        <p class="donde">Mansión de Don Alfredo</p>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Mansi%C3%B3n+de+Don+Alfredo" target="_blank" rel="noopener">Ver ubicación</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CANCIONES + DRESS CODE ===================== -->
+  <section id="canciones">
+    <img class="deco lirio-izq" src="img/lily.png" alt="">
+    <img class="deco lirio-abajo-der" src="img/lily.png" alt="">
+    <div class="contenido">
+      <div class="bloque rev">
+        <h2 class="titulo">Sugerencia de</h2>
+        <p class="sub">Canciones</p>
+        <p class="texto" style="margin-top:12px">¡Sugiere alguna canción o artista que no puede faltar en la fiesta!</p>
+        <a class="btn" id="wsp-cancion" href="#" target="_blank" rel="noopener">Click aquí</a>
+      </div>
+      <img class="oro rev" src="img/divider.png" alt="" style="margin-bottom:40px">
+      <div class="bloque rev">
+        <h2 class="titulo">Dress Code</h2>
+        <img class="iconos-vestido" src="img/ic-dress.png" alt="">
+        <p class="sub" style="margin-top:6px">Formal elegante</p>
+        <div class="colores"><i style="background:#ffc0d3"></i><i style="background:#e8b4b8"></i></div>
+        <p class="texto">El color <b>ROSADO</b> o <b>PALO ROSA</b> en esta ocasión ha sido reservado para la quinceañera.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PINTURA ===================== -->
+  <section id="pintura">
+    <img class="paint rev" src="img/aurora-night.jpg" alt="">
+  </section>
+
+  <!-- ===================== ASISTENCIA ===================== -->
+  <section id="asistencia">
+    <img class="deco lirio-der" src="img/lily.png" alt="">
+    <img class="deco mariposa" style="left:26px;bottom:90px" src="img/butterflies.png" alt="">
+    <div class="contenido">
+      <h2 class="titulo rev">Confirmación de</h2>
+      <p class="sub rev">Asistencia</p>
+      <p class="texto rev" style="margin-top:14px">Tu compañía significa mucho para mí y estoy segura de que tu presencia hará este momento aún más especial. Por favor confirma tu asistencia.</p>
+      <a class="btn rev" id="wsp-confirmar" href="#" target="_blank" rel="noopener">Click aquí</a>
+      <img class="pareja rev" src="img/aurora-girl.png" alt="" style="width:200px">
+    </div>
+  </section>
+
+  <!-- ===================== ITINERARIO ===================== -->
+  <section id="itinerario">
+    <img class="deco lirio-izq" src="img/lily.png" alt="">
+    <img class="deco lirio-der" src="img/lily.png" alt="">
+    <div class="contenido">
+      <p class="sub rev">Quinceañera</p>
+      <h2 class="titulo rev">Itinerario</h2>
+      <div class="linea">
+        <div class="it rev izq"><div class="ico"><img src="img/ic-castle.png" alt=""></div><div class="info"><h4>Misa</h4><p>7:00 pm</p></div></div>
+        <div class="it inv rev der"><div class="ico"><img src="img/ic-princess.png" alt=""></div><div class="info"><h4>Recepción</h4><p>8:00 pm</p></div></div>
+        <div class="it rev izq"><div class="ico"><img src="img/ic-toast.png" alt=""></div><div class="info"><h4>Brindis</h4><p>8:30 pm</p></div></div>
+        <div class="it inv rev der"><div class="ico"><img src="img/ic-dress.png" alt=""></div><div class="info"><h4>Cambio de zapatos y accesorios</h4><p>9:00 pm</p></div></div>
+        <div class="it rev izq"><div class="ico"><img src="img/ic-waltz.png" alt=""></div><div class="info"><h4>Vals</h4><p>9:30 pm</p></div></div>
+        <div class="it inv rev der"><div class="ico"><img src="img/ic-gift.png" alt=""></div><div class="info"><h4>Baile sorpresa</h4><p>10:00 pm</p></div></div>
+        <div class="it rev izq"><div class="ico"><img src="img/ic-dinner.png" alt=""></div><div class="info"><h4>Cena</h4><p>10:30 pm</p></div></div>
+        <div class="it inv rev der"><div class="ico"><img src="img/ic-disco.png" alt=""></div><div class="info"><h4>Fiesta</h4><p>11:00 pm</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BUZÓN DE DESEOS / FOTOS ===================== -->
+  <section id="buzon">
+    <div class="caja">
+      <div class="tarjeta rev">
+        <img class="ic" src="img/ic-mail.png" alt="">
+        <h2>Buzón de buenos</h2>
+        <p class="sub">Deseos</p>
+        <p class="texto" style="margin-top:10px">Déjame unas palabras para guardarlas siempre en mi corazón.</p>
+        <a class="btn" id="wsp-deseos" href="#" target="_blank" rel="noopener">Click aquí</a>
+      </div>
+      <div class="tarjeta rev">
+        <img class="ic" src="img/ic-camera.png" alt="">
+        <h2>Compartir</h2>
+        <p class="sub">Fotos</p>
+        <p class="texto" style="margin-top:10px">Comparte las fotos y videos que captures durante la fiesta.</p>
+        <a class="btn" id="wsp-fotos" href="#" target="_blank" rel="noopener">Click aquí</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== OBSEQUIO ===================== -->
+  <section id="obsequio">
+    <img class="deco lirio-abajo-izq" src="img/lily.png" alt="">
+    <div class="contenido">
+      <img class="ic rev" src="img/ic-gift.png" alt="">
+      <p class="sub rev">Obsequio</p>
+      <h2 class="titulo rev">Sugerencia de regalos</h2>
+      <p class="texto rev" style="margin-top:12px">Mi mejor regalo es tu presencia, pero si deseas obsequiarme algo, puedes hacerlo el día del evento o por Yape.</p>
+      <div class="yape rev">
+        <img src="img/yape.png" alt="QR de Yape">
+        <p class="yape-n">Geraldine Ariana Alexandr<br>Navarro Fiestas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FIESTA REAL ===================== -->
+  <section id="real">
+    <div class="arriba"></div>
+    <div class="cuerpo">
+      <p class="rev">Esta fiesta real es solo para príncipes y princesas.</p>
+      <p class="rev">Acompáñame este día y celebremos juntos el inicio de esta nueva etapa llena de sueños y metas por cumplir…</p>
+    </div>
+  </section>
+
+  <!-- ===================== MIS FOTOS ===================== -->
+  <section id="fotos">
+    <img class="deco lirio-der" src="img/lily.png" alt="">
+    <div class="contenido">
+      <h2 class="titulo rev">Mis fotos</h2>
+      <p class="texto rev">Vivamos juntos las diferentes etapas de mi vida…</p>
+      <div class="galeria">
+        <div class="marco rev"><div class="foto"><img src="img/foto1.jpg" alt="Foto 1" loading="lazy"></div><img class="cuadro" src="img/frame.png" alt=""></div>
+        <div class="marco rev"><div class="foto"><img src="img/foto2.jpg" alt="Foto 2" loading="lazy"></div><img class="cuadro" src="img/frame.png" alt=""></div>
+        <div class="marco rev"><div class="foto"><img src="img/foto3.jpg" alt="Foto 3" loading="lazy"></div><img class="cuadro" src="img/frame.png" alt=""></div>
+        <div class="marco rev"><div class="foto"><img src="img/foto4.jpg" alt="Foto 4" loading="lazy"></div><img class="cuadro" src="img/frame.png" alt=""></div>
+        <div class="marco rev"><div class="foto"><img src="img/foto5.jpg" alt="Foto 5" loading="lazy"></div><img class="cuadro" src="img/frame.png" alt=""></div>
+        <div class="marco rev"><div class="foto"><img src="img/foto6.jpg" alt="Foto 6" loading="lazy"></div><img class="cuadro" src="img/frame.png" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL ===================== -->
+  <section id="final">
+    <div class="t">
+      <p class="nofaltes rev">No faltes...</p>
+      <p class="esperamos rev">¡Te esperamos!</p>
+      <p class="firma rev">ALEXANDRA SOFÍA · XV AÑOS</p>
+    </div>
+  </section>
+</div>
+
+<button id="fab" aria-label="Música">♪</button>
+<audio id="audio" loop preload="auto" src="eres-tu.mp3"></audio>
+
+<script>
+  // ============ CONFIGURACIÓN ============
+  const FECHA_EVENTO = new Date('2026-11-07T19:00:00');
+  const WHATSAPP = '51976181598';
+  const MENSAJES = {
+    'wsp-confirmar': 'Hola! Confirmo mi asistencia a los XV de Alexandra Sofía 🎉 Mi nombre es: ',
+    'wsp-cancion':   'Hola! Quiero sugerir esta canción para los XV de Alexandra Sofía 🎶: ',
+    'wsp-deseos':    'Mis buenos deseos para Alexandra Sofía 💌: ',
+    'wsp-fotos':     'Hola! Te comparto fotos/videos de tus XV 📸'
+  };
+  // =======================================
+
+  for (const id in MENSAJES)
+    document.getElementById(id).href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(MENSAJES[id]);
+
+  const $ = id => document.getElementById(id);
+
+  // cuenta regresiva
+  function tick(){
+    const t = Math.max(0, FECHA_EVENTO - new Date());
+    $('d').textContent = Math.floor(t / 864e5);
+    $('h').textContent = Math.floor(t % 864e5 / 36e5);
+    $('m').textContent = Math.floor(t % 36e5 / 6e4);
+    $('s').textContent = Math.floor(t % 6e4 / 1e3);
+  }
+  tick(); setInterval(tick, 1000);
+
+  // música
+  const audio = $('audio'), play = $('play'), fab = $('fab');
+  function icono(){ const on = !audio.paused; play.textContent = on ? '❚❚' : '♥'; fab.textContent = on ? '❚❚' : '♪'; }
+  function alternar(){ audio.paused ? audio.play().catch(()=>{}) : audio.pause(); setTimeout(icono, 60); }
+  play.onclick = fab.onclick = alternar;
+
+  // abrir sobre
+  function abrir(){
+    if ($('sobre').classList.contains('abierto')) return;
+    $('sobre').classList.add('abierto');
+    document.body.classList.remove('bloqueado');
+    document.body.classList.add('listo');
+    audio.play().then(icono).catch(()=>{});
+    window.scrollTo(0, 0);
+  }
+  $('abrir').addEventListener('click', abrir);
+  $('abrir').addEventListener('keydown', e => (e.key === 'Enter' || e.key === ' ') && abrir());
+
+  // aparición al hacer scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), {threshold:.15});
+  document.querySelectorAll('.rev').forEach(el => io.observe(el));
+
+  // pétalos
+  const flores = ['🌸','💮','🌷','✿'];
+  setInterval(() => {
+    if (document.hidden) return;
+    const p = document.createElement('div');
+    p.className = 'petalo';
+    p.textContent = flores[Math.floor(Math.random() * flores.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.fontSize = (12 + Math.random() * 14) + 'px';
+    p.style.animationDuration = (8 + Math.random() * 6) + 's';
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 15000);
+  }, 1100);
+</script>
+</body>
+</html>
