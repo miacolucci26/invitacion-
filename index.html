@@ -459,7 +459,7 @@
 </div>
 
 <button id="fab" aria-label="Música">♪</button>
-<audio id="audio" loop preload="auto" src="img/eres-tu.mp3"></audio>
+<audio id="audio" loop preload="auto" playsinline><source src="img/eres-tu.mp3?v=2" type="audio/mpeg"></audio>
 
 <script>
   // ============ CONFIGURACIÓN ============
@@ -491,7 +491,23 @@
   // música
   const audio = $('audio'), play = $('play'), fab = $('fab');
   function icono(){ const on = !audio.paused; play.textContent = on ? '❚❚' : '♥'; fab.textContent = on ? '❚❚' : '♪'; }
-  function alternar(){ audio.paused ? audio.play().catch(()=>{}) : audio.pause(); setTimeout(icono, 60); }
+  let pausadaPorUsuario = false;
+  function intentarMusica(){
+    audio.muted = false; audio.volume = 1;
+    const pr = audio.play();
+    if (pr && pr.then) pr.then(icono).catch(() => {
+      // si el navegador la bloqueó, reintenta en el siguiente toque
+      const reintento = () => { if (!pausadaPorUsuario) audio.play().then(icono).catch(()=>{}); };
+      document.addEventListener('pointerdown', reintento, {once:true});
+    });
+  }
+  function alternar(){
+    if (audio.paused) { pausadaPorUsuario = false; intentarMusica(); }
+    else { pausadaPorUsuario = true; audio.pause(); }
+    setTimeout(icono, 60);
+  }
+  audio.addEventListener('play', icono); audio.addEventListener('pause', icono);
+  audio.addEventListener('error', () => console.warn('No se pudo cargar la canción', audio.error));
   play.onclick = fab.onclick = alternar;
 
   // abrir sobre
@@ -500,7 +516,7 @@
     $('sobre').classList.add('abierto');
     document.body.classList.remove('bloqueado');
     document.body.classList.add('listo');
-    audio.play().then(icono).catch(()=>{});
+    intentarMusica();
     window.scrollTo(0, 0);
   }
   $('abrir').addEventListener('click', abrir);
